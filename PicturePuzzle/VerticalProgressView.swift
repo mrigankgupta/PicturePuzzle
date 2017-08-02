@@ -110,8 +110,9 @@ class VerticalProgressView: UIView {
         progressLayer = CAShapeLayer()
         progressLayer?.frame = rect
         print("initial rect\(rect)")
-        let progressRect = CGRect(x: rect.origin.x, y: rect.origin.y,
-                                  width: rect.size.width, height: CGFloat(progress)*rect.size.height)
+        let currentHeight = CGFloat(progress)*rect.size.height
+        let progressRect = CGRect(x: rect.origin.x, y: rect.origin.y + rect.size.height - currentHeight,
+                                  width: rect.size.width, height: currentHeight)
         let progressRectInset = progressRect.insetBy(dx: CGFloat(insetX), dy: CGFloat(insetY))
         let bezier = UIBezierPath(roundedRect: progressRectInset, cornerRadius: CGFloat(cornerRadius))
         progressLayer?.path = bezier.cgPath
@@ -123,8 +124,9 @@ class VerticalProgressView: UIView {
         let basicAnimation = CABasicAnimation(keyPath: "path")
         let currentPresentationLayer = progressLayer?.presentation()
         if let oldBezierPath = currentPresentationLayer?.path {
-            let newProgressRect = CGRect(x: rect.origin.x, y: rect.origin.y,
-                                 width: rect.size.width, height: CGFloat(progress)*rect.size.height)
+            let currentHeight = CGFloat(progress)*rect.size.height
+            let newProgressRect = CGRect(x: rect.origin.x, y: rect.origin.y + rect.size.height - currentHeight,
+                                 width: rect.size.width, height: currentHeight)
             let progressRectInset = newProgressRect.insetBy(dx: CGFloat(insetX), dy: CGFloat(insetY))
             finalBezeirPath = UIBezierPath(roundedRect: progressRectInset, cornerRadius: CGFloat(cornerRadius))
             basicAnimation.fromValue = oldBezierPath
