@@ -132,6 +132,7 @@ class VerticalProgressView: UIView {
             basicAnimation.duration = 2.0
             basicAnimation.fillMode = kCAFillModeBoth
             basicAnimation.delegate = self
+            progressLayer?.path = finalBezeirPath?.cgPath
             progressLayer?.add(basicAnimation, forKey: "progress")
         }
     }
@@ -139,7 +140,6 @@ class VerticalProgressView: UIView {
 
 extension VerticalProgressView: CAAnimationDelegate {
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-//        progressLayer?.path = finalBezeirPath?.cgPath
     }
 
 }
