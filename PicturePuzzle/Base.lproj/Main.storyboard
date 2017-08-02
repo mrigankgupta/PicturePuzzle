@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13156.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13137.5"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Puzzle View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="PuzzleViewController" id="BYZ-38-t0r" customClass="PuzzleViewController" customModule="PicturePuzzle" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="XtX-H6-wJd">
+                                <rect key="frame" x="20" y="17" width="570" height="340"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uio-LL-9Wz">
+                                    <size key="itemSize" width="187" height="117"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PuzzleViewController" id="piw-at-08e">
+                                        <rect key="frame" x="0.0" y="0.0" width="187" height="117"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="187" height="117"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ayC-8D-Unp">
+                                                    <rect key="frame" x="0.0" y="0.0" width="187" height="117"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="ayC-8D-Unp" secondAttribute="trailing" id="3Wb-Dr-dyr"/>
+                                            <constraint firstAttribute="bottom" secondItem="ayC-8D-Unp" secondAttribute="bottom" id="8Fm-DD-Ldd"/>
+                                            <constraint firstItem="ayC-8D-Unp" firstAttribute="top" secondItem="piw-at-08e" secondAttribute="top" id="Br7-Ya-I0F"/>
+                                            <constraint firstItem="ayC-8D-Unp" firstAttribute="leading" secondItem="piw-at-08e" secondAttribute="leading" id="K3C-kY-KCV"/>
+                                        </constraints>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="RFl-v6-ORH">
+                                <rect key="frame" x="590" y="0.0" width="57" height="375"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GNt-Qh-Zfe" customClass="VerticalProgressView" customModule="PicturePuzzle" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="57" height="375"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="RFl-v6-ORH" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="8cp-MM-VWm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="RFl-v6-ORH" secondAttribute="trailing" id="BlP-L8-4Fn"/>
+                            <constraint firstItem="RFl-v6-ORH" firstAttribute="width" secondItem="XtX-H6-wJd" secondAttribute="width" multiplier="1:10" id="FEi-T1-QFi"/>
+                            <constraint firstItem="XtX-H6-wJd" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" multiplier="0.95" constant="17" id="IWh-7n-3ls"/>
+                            <constraint firstItem="XtX-H6-wJd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" multiplier="0.95" constant="20" id="Lq4-Qr-5Er"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="RFl-v6-ORH" secondAttribute="bottom" id="ibN-bl-FYb"/>
+                            <constraint firstItem="GNt-Qh-Zfe" firstAttribute="leading" secondItem="XtX-H6-wJd" secondAttribute="trailing" id="oz9-sy-AQn"/>
+                            <constraint firstItem="XtX-H6-wJd" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" multiplier="0.95" id="sKH-c1-3D0"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="XtX-H6-wJd" id="Ta0-kU-ugM"/>
+                        <outlet property="layout" destination="uio-LL-9Wz" id="MWB-Te-Qjk"/>
+                        <outlet property="progressBar" destination="GNt-Qh-Zfe" id="98p-Fa-M00"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-622.03898050974522" y="92"/>
+        </scene>
+    </scenes>
+</document>
