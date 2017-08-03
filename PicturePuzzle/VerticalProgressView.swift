@@ -11,8 +11,8 @@ import UIKit
 
 class VerticalProgressView: UIView {
     fileprivate var progressLayer: CAShapeLayer?
-    private var progressLabel = UILabel()
     fileprivate var finalBezeirPath:UIBezierPath?
+    private var progressLabel = UILabel()
     private var innerProgress: Float = 0.5 {
         didSet {
             if let _ = progressLayer {
@@ -20,18 +20,23 @@ class VerticalProgressView: UIView {
             }
         }
     }
-    public var insetX: Float = 10.0 {
+    
+    public var insetX: Float = 5.0 {
         didSet {
             if let progressLayer = progressLayer {
+                progressLayer.path = getRectangularBezierPath(forRect: bounds, progress: progress, insetX: insetX, insetY: insetY, cornerRadius: cornerRadius).cgPath
             }
         }
     }
-    public var insetY: Float = 10.0 {
+    
+    public var insetY: Float = 5.0 {
         didSet {
             if let progressLayer = progressLayer {
+                progressLayer.path = getRectangularBezierPath(forRect: bounds, progress: progress, insetX: insetX, insetY: insetY, cornerRadius: cornerRadius).cgPath
             }
         }
     }
+    
     public var cornerRadius: Float = 10 {
         didSet {
             layer.cornerRadius = CGFloat(cornerRadius)
@@ -110,11 +115,7 @@ class VerticalProgressView: UIView {
         progressLayer = CAShapeLayer()
         progressLayer?.frame = rect
         print("initial rect\(rect)")
-        let currentHeight = CGFloat(progress)*rect.size.height
-        let progressRect = CGRect(x: rect.origin.x, y: rect.origin.y + rect.size.height - currentHeight,
-                                  width: rect.size.width, height: currentHeight)
-        let progressRectInset = progressRect.insetBy(dx: CGFloat(insetX), dy: CGFloat(insetY))
-        let bezier = UIBezierPath(roundedRect: progressRectInset, cornerRadius: CGFloat(cornerRadius))
+        let bezier = getRectangularBezierPath(forRect: rect, progress: progress, insetX: insetX, insetY: insetY, cornerRadius: cornerRadius)
         progressLayer?.path = bezier.cgPath
         progressLayer?.fillColor = fillColor.cgColor
         layer.addSublayer(progressLayer!)
@@ -124,11 +125,7 @@ class VerticalProgressView: UIView {
         let basicAnimation = CABasicAnimation(keyPath: "path")
         let currentPresentationLayer = progressLayer?.presentation()
         if let oldBezierPath = currentPresentationLayer?.path {
-            let currentHeight = CGFloat(progress)*rect.size.height
-            let newProgressRect = CGRect(x: rect.origin.x, y: rect.origin.y + rect.size.height - currentHeight,
-                                 width: rect.size.width, height: currentHeight)
-            let progressRectInset = newProgressRect.insetBy(dx: CGFloat(insetX), dy: CGFloat(insetY))
-            finalBezeirPath = UIBezierPath(roundedRect: progressRectInset, cornerRadius: CGFloat(cornerRadius))
+            finalBezeirPath = getRectangularBezierPath(forRect: rect, progress: progress, insetX: insetX, insetY: insetY, cornerRadius: cornerRadius)
             basicAnimation.fromValue = oldBezierPath
             basicAnimation.toValue = finalBezeirPath?.cgPath
             basicAnimation.duration = 2.0
@@ -138,10 +135,17 @@ class VerticalProgressView: UIView {
             progressLayer?.add(basicAnimation, forKey: "progress")
         }
     }
+    
+    private func getRectangularBezierPath(forRect rect:CGRect, progress:Float, insetX:Float, insetY:Float, cornerRadius:Float) -> UIBezierPath {
+        let currentHeight = CGFloat(progress)*rect.size.height
+        let progressRect = CGRect(x: rect.origin.x, y: rect.origin.y + rect.size.height - currentHeight,
+                                  width: rect.size.width, height: currentHeight)
+        let progressRectInset = progressRect.insetBy(dx: CGFloat(insetX), dy: CGFloat(insetY))
+        return UIBezierPath(roundedRect: progressRectInset, cornerRadius: CGFloat(cornerRadius))
+    }
 }
 
 extension VerticalProgressView: CAAnimationDelegate {
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
     }
-
 }
