@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13156.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina4_7" orientation="landscape">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13156.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13137.5"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,11 +20,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="XtX-H6-wJd">
-                                <rect key="frame" x="20" y="17" width="570" height="340"/>
+                                <rect key="frame" x="20" y="20" width="634.33333333333337" height="374"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="uio-LL-9Wz">
                                     <size key="itemSize" width="187" height="117"/>
@@ -54,26 +54,53 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="RFl-v6-ORH">
-                                <rect key="frame" x="590" y="0.0" width="57" height="375"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="RFl-v6-ORH">
+                                <rect key="frame" x="679.33333333333348" y="10" width="31.666666666666629" height="394"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lmr-qK-L5J">
+                                        <rect key="frame" x="0.0" y="0.0" width="31.666666666666629" height="31.666666666666664"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Lmr-qK-L5J" secondAttribute="height" multiplier="1:1" id="tef-6p-a3h"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="cancel"/>
+                                    </button>
                                     <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GNt-Qh-Zfe" customClass="VerticalProgressView" customModule="PicturePuzzle" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="57" height="375"/>
+                                        <rect key="frame" x="0.0" y="41.666666666666657" width="31.666666666666629" height="352.33333333333337"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="Lmr-qK-L5J" firstAttribute="centerX" secondItem="RFl-v6-ORH" secondAttribute="centerX" id="2L9-Ag-FbU"/>
+                                    <constraint firstItem="GNt-Qh-Zfe" firstAttribute="width" secondItem="Lmr-qK-L5J" secondAttribute="width" id="B8U-dn-ddd"/>
+                                    <constraint firstItem="GNt-Qh-Zfe" firstAttribute="centerX" secondItem="RFl-v6-ORH" secondAttribute="centerX" id="int-eD-HkM"/>
+                                </constraints>
+                                <variation key="heightClass=regular-widthClass=regular" spacing="20"/>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="RFl-v6-ORH" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="8cp-MM-VWm"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="RFl-v6-ORH" secondAttribute="trailing" id="BlP-L8-4Fn"/>
-                            <constraint firstItem="RFl-v6-ORH" firstAttribute="width" secondItem="XtX-H6-wJd" secondAttribute="width" multiplier="1:10" id="FEi-T1-QFi"/>
-                            <constraint firstItem="XtX-H6-wJd" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" multiplier="0.95" constant="17" id="IWh-7n-3ls"/>
-                            <constraint firstItem="XtX-H6-wJd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" multiplier="0.95" constant="20" id="Lq4-Qr-5Er"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="RFl-v6-ORH" secondAttribute="bottom" id="ibN-bl-FYb"/>
-                            <constraint firstItem="GNt-Qh-Zfe" firstAttribute="leading" secondItem="XtX-H6-wJd" secondAttribute="trailing" id="oz9-sy-AQn"/>
-                            <constraint firstItem="XtX-H6-wJd" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" multiplier="0.95" id="sKH-c1-3D0"/>
+                            <constraint firstItem="RFl-v6-ORH" firstAttribute="leading" secondItem="XtX-H6-wJd" secondAttribute="trailing" constant="25" id="7QV-bx-JVE">
+                                <variation key="heightClass=regular-widthClass=regular" constant="40"/>
+                            </constraint>
+                            <constraint firstItem="RFl-v6-ORH" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="8cp-MM-VWm">
+                                <variation key="heightClass=regular-widthClass=regular" constant="20"/>
+                            </constraint>
+                            <constraint firstAttribute="trailing" secondItem="RFl-v6-ORH" secondAttribute="trailing" constant="25" id="BlP-L8-4Fn">
+                                <variation key="heightClass=regular-widthClass=regular" constant="40"/>
+                            </constraint>
+                            <constraint firstItem="RFl-v6-ORH" firstAttribute="width" secondItem="XtX-H6-wJd" secondAttribute="width" multiplier="1:20" id="FEi-T1-QFi"/>
+                            <constraint firstItem="XtX-H6-wJd" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="20" id="IWh-7n-3ls">
+                                <variation key="heightClass=regular-widthClass=regular" constant="40"/>
+                            </constraint>
+                            <constraint firstItem="XtX-H6-wJd" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="Lq4-Qr-5Er">
+                                <variation key="heightClass=regular-widthClass=regular" constant="40"/>
+                            </constraint>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="RFl-v6-ORH" secondAttribute="bottom" constant="10" id="ibN-bl-FYb">
+                                <variation key="heightClass=regular-widthClass=regular" constant="20"/>
+                            </constraint>
+                            <constraint firstAttribute="bottom" secondItem="XtX-H6-wJd" secondAttribute="bottom" constant="20" id="sKH-c1-3D0">
+                                <variation key="heightClass=regular-widthClass=regular" constant="40"/>
+                            </constraint>
                         </constraints>
                     </view>
                     <connections>
@@ -84,7 +111,10 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-622.03898050974522" y="92"/>
+            <point key="canvasLocation" x="-622.40117130307465" y="91.9921875"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="cancel" width="22" height="22"/>
+    </resources>
 </document>
