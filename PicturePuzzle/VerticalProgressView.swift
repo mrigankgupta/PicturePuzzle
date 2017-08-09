@@ -11,12 +11,11 @@ import UIKit
 
 class VerticalProgressView: UIView {
     fileprivate var progressLayer: CAShapeLayer?
-    fileprivate var finalBezeirPath:UIBezierPath?
     private var progressLabel = UILabel()
     private var innerProgress: Float = 0.5 {
         didSet {
-            if let _ = progressLayer {
-                animate(bounds)
+            if let progressLayer = progressLayer {
+                animateLayer(progressLayer, with: bounds)
             }
         }
     }
@@ -97,11 +96,12 @@ class VerticalProgressView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         if progressLayer == nil {
-            createProgressBar(bounds)
+            progressLayer = createProgressLayer(bounds)
+            layer.addSublayer(progressLayer!)
         }
     }
     
-    public func layerProperties () {
+    public func layerProperties() {
         layer.cornerRadius = CGFloat(cornerRadius)
         layer.masksToBounds = true
     }
@@ -111,28 +111,28 @@ class VerticalProgressView: UIView {
         layer.backgroundColor = trackColor.cgColor
     }
     
-    private func createProgressBar(_ rect:CGRect) {
-        progressLayer = CAShapeLayer()
-        progressLayer?.frame = rect
+    private func createProgressLayer(_ rect:CGRect) -> CAShapeLayer {
+        let layer = CAShapeLayer()
+        layer.frame = rect
         print("initial rect\(rect)")
         let bezier = getRectangularBezierPath(forRect: rect, progress: progress, insetX: insetX, insetY: insetY, cornerRadius: cornerRadius)
-        progressLayer?.path = bezier.cgPath
-        progressLayer?.fillColor = fillColor.cgColor
-        layer.addSublayer(progressLayer!)
+        layer.path = bezier.cgPath
+        layer.fillColor = fillColor.cgColor
+        return layer
     }
     
-    private func animate(_ rect:CGRect) {
+    private func animateLayer(_ layer:CAShapeLayer, with rect:CGRect) {
         let basicAnimation = CABasicAnimation(keyPath: "path")
-        let currentPresentationLayer = progressLayer?.presentation()
+        let currentPresentationLayer = layer.presentation()
         if let oldBezierPath = currentPresentationLayer?.path {
-            finalBezeirPath = getRectangularBezierPath(forRect: rect, progress: progress, insetX: insetX, insetY: insetY, cornerRadius: cornerRadius)
+            let finalBezeirPath = getRectangularBezierPath(forRect: rect, progress: progress, insetX: insetX, insetY: insetY, cornerRadius: cornerRadius)
             basicAnimation.fromValue = oldBezierPath
-            basicAnimation.toValue = finalBezeirPath?.cgPath
+            basicAnimation.toValue = finalBezeirPath.cgPath
             basicAnimation.duration = 2.0
             basicAnimation.fillMode = kCAFillModeBoth
             basicAnimation.delegate = self
-            progressLayer?.path = finalBezeirPath?.cgPath
-            progressLayer?.add(basicAnimation, forKey: "progress")
+            layer.path = finalBezeirPath.cgPath
+            layer.add(basicAnimation, forKey: "progress")
         }
     }
     
