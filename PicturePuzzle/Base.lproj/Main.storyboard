@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13156.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13156.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ufk-8N-9cm">
     <device id="retina5_5" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,6 +11,67 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Root View Controller-->
+        <scene sceneID="1zK-nh-yRb">
+            <objects>
+                <viewController id="S1g-Xt-Tvo" customClass="RootViewController" customModule="PicturePuzzle" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xHP-Yd-xCH"/>
+                        <viewControllerLayoutGuide type="bottom" id="o5s-mr-cuH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="YES" id="MvM-JZ-kuz">
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="s3w-1K-ceH"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZY7-iI-DED" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1396.467391304348" y="-3178.2608695652175"/>
+        </scene>
+        <!--Splash View Controller-->
+        <scene sceneID="mfJ-BS-d59">
+            <objects>
+                <viewController storyboardIdentifier="SplashViewController" id="SsG-tW-1vB" customClass="SplashViewController" customModule="PicturePuzzle" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KWk-P1-vJy"/>
+                        <viewControllerLayoutGuide type="bottom" id="dgX-oX-Zra"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="YES" id="416-NJ-EbC">
+                        <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p48-ip-hgl">
+                                <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="we2-1n-2ZI">
+                                <rect key="frame" x="366" y="205" width="5" height="5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="5" id="j2d-4g-McW"/>
+                                    <constraint firstAttribute="width" constant="5" id="wyN-9h-Xl4"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="p48-ip-hgl" firstAttribute="leading" secondItem="416-NJ-EbC" secondAttribute="leading" id="7Nc-vX-fZq"/>
+                            <constraint firstItem="we2-1n-2ZI" firstAttribute="centerY" secondItem="416-NJ-EbC" secondAttribute="centerY" id="ACW-Ty-DIh"/>
+                            <constraint firstItem="we2-1n-2ZI" firstAttribute="centerX" secondItem="416-NJ-EbC" secondAttribute="centerX" id="FlW-Fk-nsO"/>
+                            <constraint firstAttribute="trailing" secondItem="p48-ip-hgl" secondAttribute="trailing" id="GRo-HO-CAd"/>
+                            <constraint firstItem="dgX-oX-Zra" firstAttribute="top" secondItem="p48-ip-hgl" secondAttribute="bottom" id="O6k-MB-I45"/>
+                            <constraint firstItem="p48-ip-hgl" firstAttribute="top" secondItem="KWk-P1-vJy" secondAttribute="bottom" id="TdD-KO-92g"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="bgImage" destination="p48-ip-hgl" id="vC3-EK-GPN"/>
+                        <outlet property="numImage" destination="we2-1n-2ZI" id="PQi-Dq-cG6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="d2s-Qw-dEB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-620.38043478260875" y="-3178.2608695652175"/>
+        </scene>
         <!--Puzzle View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -105,13 +166,32 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="XtX-H6-wJd" id="Ta0-kU-ugM"/>
+                        <outlet property="gradientView" destination="8bC-Xf-vdC" id="ezy-gw-vxR"/>
                         <outlet property="layout" destination="uio-LL-9Wz" id="MWB-Te-Qjk"/>
                         <outlet property="progressBar" destination="GNt-Qh-Zfe" id="98p-Fa-M00"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-622.40117130307465" y="91.9921875"/>
+            <point key="canvasLocation" x="-1396" y="-2112"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="VcE-zb-38T">
+            <objects>
+                <navigationController storyboardIdentifier="NavigationController" automaticallyAdjustsScrollViewInsets="NO" id="ufk-8N-9cm" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9WL-KR-ccI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="S1g-Xt-Tvo" kind="relationship" relationship="rootViewController" id="5o1-HD-huA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f3c-UU-3ns" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2133" y="-3178"/>
         </scene>
     </scenes>
     <resources>

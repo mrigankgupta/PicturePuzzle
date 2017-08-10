@@ -5,21 +5,24 @@
 //  Created by Gupta, Mrigank on 17/07/17.
 //  Copyright © 2017 Gupta, Mrigank. All rights reserved.
 //
-
 import UIKit
-class PuzzleViewController: UIViewController {
-    fileprivate let gapBtwSlice:CGFloat = 2.0
 
+class PuzzleViewController: UIViewController {
+    
     @IBOutlet weak var layout: UICollectionViewFlowLayout!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var progressBar: VerticalProgressView!
-
-    var currentPuzzle = Puzzle(row:3, col:4, imageURL:"")
-    var puzzleImage: UIImage? = UIImage(assetIdentifier: .defaultImage)
-    var timer: Timer?
+    @IBOutlet weak var gradientView: UIView!
     
-    lazy var sliced:[Slice] = {
-        [unowned self]()->[Slice] in
+    fileprivate let gapBtwSlice:CGFloat = 1.0
+    
+    public var currentPuzzle: Puzzle!
+    public var puzzleImage: UIImage!
+    var timer: Timer?
+    let totalTime = 21.0
+    var time = 21.0
+    
+    lazy var sliced:[Slice] = {[unowned self]()->[Slice] in
         var ordered = self.puzzleImage?.slice(row:self.currentPuzzle.row, col: self.currentPuzzle.col) ?? [Slice]()
         for i in 0..<ordered.count {
             let rand = Int(arc4random()) % ordered.count
@@ -34,24 +37,23 @@ class PuzzleViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         collectionView.delegate = self
         collectionView.dataSource = self
-        
-        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.longPressGesture(_:)))
-        longPressGesture.minimumPressDuration = 0.2
-        collectionView.addGestureRecognizer(longPressGesture)
-        progressBar.trackImage = UIImage(assetIdentifier: .trackImage)
-        progressBar.cornerRadius = 0.0
-//        progressBar.insetX = 10
-//        progressBar.insetY = 10
-        timer = Timer.scheduledTimer(withTimeInterval: 4.0, repeats: true, block: { (timer) in
-            let percent = arc4random()%100
-            let p = Float(percent)/100.0
-            print("\(p)")
-            self.progressBar.progress = Float(p)
-        })
+        collectionView.backgroundColor = UIColor.clear
+        installLongPressGesture()
+        installProgressBar()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        timer = startTimer(timeInterval: 1.0, initialDelay: 2.0)
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+//        installGradientLayer(view: gradientView)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -88,12 +90,15 @@ extension PuzzleViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       return sliced.count
+        return sliced.count
     }
     
     func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         let person = sliced.remove(at: sourceIndexPath.item)
         sliced.insert(person, at: destinationIndexPath.item)
+        if isOrdered(sliced) {
+            //TODO:Show Alert
+        }
     }
 }
 
@@ -124,5 +129,55 @@ private extension PuzzleViewController {
     
     func slicedPictureHeight() -> CGFloat {
         return (collectionView.frame.size.height - gapBtwSlice*CGFloat(currentPuzzle.row+1))/CGFloat(currentPuzzle.row)
+    }
+    
+    func isOrdered(_ array:[Slice]) -> Bool {
+        for i in 0..<array.count {
+            guard array[i].index == i else {return false}
+        }
+        return true
+    }
+    
+    func startTimer(timeInterval:TimeInterval, initialDelay:TimeInterval) ->Timer {
+        let now = Date.init()
+        let timer = Timer(fireAt: now.addingTimeInterval(initialDelay), interval: timeInterval, target: self, selector: #selector(self.startTime), userInfo:nil, repeats: true)
+        RunLoop.main.add(timer, forMode: RunLoopMode.commonModes)
+        timer.fire()
+        return timer
+    }
+    
+    @objc func startTime() {
+        if time > 0.0 {
+            let progress = time/totalTime
+            time = time-1
+            print("\(progress)")
+            progressBar.progress = Float(progress)
+        }else {
+            timer?.invalidate()
+        }
+    }
+    
+    func installLongPressGesture() {
+        let longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.longPressGesture(_:)))
+        longPressGesture.minimumPressDuration = 0.2
+        collectionView.addGestureRecognizer(longPressGesture)
+    }
+    
+    func installProgressBar() {
+        progressBar.trackImage = UIImage(assetIdentifier: .trackImage)
+        progressBar.fillColor = Pallet.ColorProgressBar.color()
+        progressBar.cornerRadius = 0.0
+        progressBar.insetX = 7
+        progressBar.insetY = 7
+    }
+    
+    func installGradientLayer(view:UIView) {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = view.bounds
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 0.0, y: 1.0)
+        gradientLayer.locations = [0,NSNumber(value:0.09),1]
+        gradientLayer.colors = [Pallet.ColorStartGradient.cgColor(),Pallet.ColorCenterGradient.cgColor(),Pallet.ColorStopGradient.cgColor()]
+        view.layer.insertSublayer(gradientLayer, at: 0)
     }
 }
