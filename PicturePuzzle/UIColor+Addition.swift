@@ -22,11 +22,20 @@ extension UIColor {
         if (cString.hasPrefix("#")) {
             cString.remove(at: cString.startIndex)
         }
-
         var rgb = UInt32()
         Scanner(string: cString).scanHexInt32(&rgb)
         self.init(hex: rgb)
     }
 }
 
-
+enum Pallet:String {
+    case ColorStartGradient, ColorCenterGradient = "#DCDCDC"
+    case ColorStopGradient = "#FDFDFD"
+    case ColorProgressBar = "#778FD5"
+    func color() -> UIColor {
+        return UIColor(hexHashString: self.rawValue)
+    }
+    func cgColor() -> CGColor {
+        return UIColor(hexHashString: self.rawValue).cgColor
+    }
+}
