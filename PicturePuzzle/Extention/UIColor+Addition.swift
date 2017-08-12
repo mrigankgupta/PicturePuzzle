@@ -29,7 +29,7 @@ extension UIColor {
 }
 
 enum Pallet:String {
-    case ColorStartGradient, ColorCenterGradient = "#DCDCDC"
+    case ColorStartGradient = "#DCDCDC"
     case ColorStopGradient = "#FDFDFD"
     case ColorProgressBar = "#778FD5"
     func color() -> UIColor {
