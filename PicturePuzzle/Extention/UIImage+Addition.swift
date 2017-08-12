@@ -17,11 +17,12 @@ extension UIImage {
         for i in 0..<row {
             for j in 0..<col {
                 let rect = CGRect(origin: CGPoint(x:CGFloat(j)*size.width,y:CGFloat(i)*size.height), size: size)
-                //                print("\(rect)")
                 let cgImage = self.cgImage?.cropping(to: rect)
                 if let cgImage = cgImage {
                     let slicedImage = UIImage(cgImage: cgImage, scale: self.scale, orientation: self.imageOrientation)
-                    let singleSlice = Slice(index: (i+1)*j, image: slicedImage)
+                    let index = j + i*col
+                    let singleSlice = Slice(index: index, image: slicedImage)
+                    print("\(index)")
                     slices.append(singleSlice)
                 }
             }
