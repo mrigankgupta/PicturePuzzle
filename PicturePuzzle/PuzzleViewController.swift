@@ -138,7 +138,6 @@ private extension PuzzleViewController {
     @objc func startTime() {
         if time > 0.0 {
             let progress = time/totalTime
-            print("progress \(progress) time \(time)")
             progressBar.progress = Float(progress)
             time = time - 1
         }else {

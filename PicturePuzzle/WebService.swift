@@ -8,20 +8,30 @@
 
 import Foundation
 import UIKit
-import AlamofireImage
-import Alamofire
+
 enum Result {
     case error
     case success(UIImage)
 }
 final class WebService {
-    func downloadImage(for url:String, completion:@escaping(Result) -> Void) {
-        Alamofire.request(url).responseImage { response in
-            //                debugPrint(response)
-            //                print(response.request)
-            //                print(response.response)
-            guard let downloadedImage = response.result.value else {return completion(.error)}
-            return completion(.success(downloadedImage))
-        }
+    func downloadImage(for urlString:String, completion:@escaping(Result) -> Void) {
+        let url = URL(string: urlString)!
+        URLSession.shared.downloadTask(with: url) { (location, _ , _) in
+            if let location = location {
+                do {
+                    let imageData = try Data.init(contentsOf: location)
+                    if let image = UIImage.init(data: imageData) {
+                        DispatchQueue.main.async {
+                            completion(.success(image))
+                        }
+                    }
+                    return
+                }catch {
+                    DispatchQueue.main.async {
+                        completion(.error)
+                    }
+                }
+            }
+        }.resume()
     }
 }
