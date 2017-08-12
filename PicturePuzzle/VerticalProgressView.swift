@@ -114,7 +114,6 @@ class VerticalProgressView: UIView {
     private func createProgressLayer(_ rect:CGRect) -> CAShapeLayer {
         let layer = CAShapeLayer()
         layer.frame = rect
-        print("initial rect\(rect)")
         let bezier = getRectangularBezierPath(forRect: rect, progress: progress, insetX: insetX, insetY: insetY, cornerRadius: cornerRadius)
         layer.path = bezier.cgPath
         layer.fillColor = fillColor.cgColor
@@ -137,11 +136,12 @@ class VerticalProgressView: UIView {
     }
     
     private func getRectangularBezierPath(forRect rect:CGRect, progress:Float, insetX:Float, insetY:Float, cornerRadius:Float) -> UIBezierPath {
-        let currentHeight = CGFloat(progress)*rect.size.height
-        let progressRect = CGRect(x: rect.origin.x, y: rect.origin.y + rect.size.height - currentHeight,
-                                  width: rect.size.width, height: currentHeight)
-        let progressRectInset = progressRect.insetBy(dx: CGFloat(insetX), dy: CGFloat(insetY))
-        return UIBezierPath(roundedRect: progressRectInset, cornerRadius: CGFloat(cornerRadius))
+        let fullRect = CGRect(x: rect.origin.x, y: rect.origin.y,
+                                  width: rect.size.width, height: rect.size.height)
+        let fullRectInset = fullRect.insetBy(dx: CGFloat(insetX), dy: CGFloat(insetY))
+        let progressHeight = fullRectInset.size.height*CGFloat(progress)
+        let progressRect = CGRect(x: fullRectInset.origin.x, y: fullRectInset.origin.y + fullRectInset.size.height - progressHeight, width: fullRectInset.size.width, height: progressHeight)
+        return UIBezierPath(roundedRect: progressRect, cornerRadius: CGFloat(cornerRadius))
     }
 }
 
