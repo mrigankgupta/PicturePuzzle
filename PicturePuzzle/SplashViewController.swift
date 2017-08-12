@@ -19,7 +19,8 @@ public protocol AdvertGame: class {
 class SplashViewController: UIViewController {
     
     @IBOutlet weak var bgImage: UIImageView!
-    @IBOutlet weak var numImage: UIImageView!
+    @IBOutlet weak var numLabel: UILabel!
+    
     public weak var delegate:AdvertGame?
     public weak var rootViewController: UIViewController?
     
@@ -30,7 +31,7 @@ class SplashViewController: UIViewController {
     var counter = 3
     
     private let service = WebService()
-
+    
     override var prefersStatusBarHidden: Bool {
         return true
     }
@@ -58,10 +59,9 @@ class SplashViewController: UIViewController {
                 self?.downloadedImage = image
                 let show = self?.delegate?.didReceivedImage(image: image)
                 if show == true {
-                    
                     self?.rootViewController?.present(self!, animated: true, completion: {
                         //start timer
-                        self?.cTimer = self?.startTimer(timeInterval: 1.0, initialDelay: 3.0)
+                        self?.cTimer = Timer(timeInterval: 1.0, initialDelay: 3.0, aSelector: #selector(self?.countDown), target: self as Any)
                     })
                 }
             }
@@ -70,27 +70,33 @@ class SplashViewController: UIViewController {
     
 }
 
-extension SplashViewController {
+private extension SplashViewController {
+    
     @objc func countDown() {
-        counter = counter-1
         if counter > 0 {
-            
+            numLabel.text = "\(counter)"
+            self.animate(view: numLabel, duration: 1)
+            counter = counter-1
         }else {
             cTimer?.invalidate()
-            let puzzleVC = self.storyboard?.instantiateViewController(withIdentifier: "PuzzleViewController") as! PuzzleViewController
-            puzzleVC.puzzleImage = self.downloadedImage
-            puzzleVC.currentPuzzle = self.currentPuzzle
-            self.rootViewController?.navigationController?.pushViewController(puzzleVC, animated: false)
+            self.presetPuzzleController()
             self.dismiss(animated: true, completion:nil)
         }
     }
     
-    func startTimer(timeInterval:TimeInterval, initialDelay:TimeInterval) ->Timer {
-        let now = Date.init()
-        let timer = Timer(fireAt: now.addingTimeInterval(initialDelay), interval: timeInterval, target: self, selector: #selector(self.countDown), userInfo:nil, repeats: true)
-        RunLoop.main.add(timer, forMode: RunLoopMode.commonModes)
-        timer.fire()
-        return timer
+    func animate(view:UIView, duration:TimeInterval) {
+        view.alpha = 1.0
+        view.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        UIView.animate(withDuration: duration) {
+            view.alpha = 0
+            view.transform = CGAffineTransform(scaleX: 14.0, y: 14.0)
+        }
     }
     
+    func presetPuzzleController() {
+        let puzzleVC = self.storyboard?.instantiateViewController(withIdentifier: "PuzzleViewController") as! PuzzleViewController
+        puzzleVC.puzzleImage = self.downloadedImage
+        puzzleVC.currentPuzzle = self.currentPuzzle
+        self.rootViewController?.navigationController?.pushViewController(puzzleVC, animated: false)
+    }
 }

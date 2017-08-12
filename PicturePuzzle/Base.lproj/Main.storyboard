@@ -45,27 +45,26 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="p48-ip-hgl">
                                 <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="we2-1n-2ZI">
-                                <rect key="frame" x="366" y="205" width="5" height="5"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="5" id="j2d-4g-McW"/>
-                                    <constraint firstAttribute="width" constant="5" id="wyN-9h-Xl4"/>
-                                </constraints>
-                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b0m-Cq-NCQ">
+                                <rect key="frame" x="363" y="197" width="10.333333333333314" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="p48-ip-hgl" firstAttribute="leading" secondItem="416-NJ-EbC" secondAttribute="leading" id="7Nc-vX-fZq"/>
-                            <constraint firstItem="we2-1n-2ZI" firstAttribute="centerY" secondItem="416-NJ-EbC" secondAttribute="centerY" id="ACW-Ty-DIh"/>
-                            <constraint firstItem="we2-1n-2ZI" firstAttribute="centerX" secondItem="416-NJ-EbC" secondAttribute="centerX" id="FlW-Fk-nsO"/>
                             <constraint firstAttribute="trailing" secondItem="p48-ip-hgl" secondAttribute="trailing" id="GRo-HO-CAd"/>
+                            <constraint firstItem="b0m-Cq-NCQ" firstAttribute="centerY" secondItem="416-NJ-EbC" secondAttribute="centerY" id="NHZ-w1-NYB"/>
                             <constraint firstItem="dgX-oX-Zra" firstAttribute="top" secondItem="p48-ip-hgl" secondAttribute="bottom" id="O6k-MB-I45"/>
                             <constraint firstItem="p48-ip-hgl" firstAttribute="top" secondItem="KWk-P1-vJy" secondAttribute="bottom" id="TdD-KO-92g"/>
+                            <constraint firstItem="b0m-Cq-NCQ" firstAttribute="centerX" secondItem="416-NJ-EbC" secondAttribute="centerX" id="csf-lD-DHW"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="bgImage" destination="p48-ip-hgl" id="vC3-EK-GPN"/>
-                        <outlet property="numImage" destination="we2-1n-2ZI" id="PQi-Dq-cG6"/>
+                        <outlet property="numLabel" destination="b0m-Cq-NCQ" id="DHG-DD-PFI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d2s-Qw-dEB" userLabel="First Responder" sceneMemberID="firstResponder"/>

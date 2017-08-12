@@ -47,35 +47,31 @@ class PuzzleViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        timer = startTimer(timeInterval: 1.0, initialDelay: 2.0)
+        timer = Timer(timeInterval: 1.0, initialDelay: 2.0, aSelector: #selector(self.startTime), target: self)
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-//        installGradientLayer(view: gradientView)
+        installGradientLayer(view: gradientView)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
-    func longPressGesture(_ longPress:UILongPressGestureRecognizer?=nil) {
-        guard let longPress = longPress else {
-            return
-        }
-        let touchPoint = longPress.location(in: longPress.view)
-        switch longPress.state {
-        case .began:
-            guard let indexPath = collectionView.indexPathForItem(at: touchPoint) else {break}
-            collectionView.beginInteractiveMovementForItem(at:indexPath)
-        case .cancelled:
-            collectionView.cancelInteractiveMovement()
-        case .ended:
-            collectionView.endInteractiveMovement()
-        case .changed:
-            collectionView.updateInteractiveMovementTargetPosition(touchPoint)
-        default:
-            collectionView.cancelInteractiveMovement()
+    func longPressGesture(_ gesture:UILongPressGestureRecognizer?=nil) {
+        if let gesture = gesture {
+            switch(gesture.state) {
+            case .began:
+                guard let selectedIndexPath = self.collectionView.indexPathForItem(at: gesture.location(in: self.collectionView)) else {break}
+                collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
+            case .changed:
+                collectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
+            case .ended:
+                collectionView.endInteractiveMovement()
+            default:
+                collectionView.cancelInteractiveMovement()
+            }
         }
     }
 }
@@ -98,6 +94,7 @@ extension PuzzleViewController: UICollectionViewDataSource {
         sliced.insert(person, at: destinationIndexPath.item)
         if isOrdered(sliced) {
             //TODO:Show Alert
+            print("success")
         }
     }
 }
@@ -138,21 +135,14 @@ private extension PuzzleViewController {
         return true
     }
     
-    func startTimer(timeInterval:TimeInterval, initialDelay:TimeInterval) ->Timer {
-        let now = Date.init()
-        let timer = Timer(fireAt: now.addingTimeInterval(initialDelay), interval: timeInterval, target: self, selector: #selector(self.startTime), userInfo:nil, repeats: true)
-        RunLoop.main.add(timer, forMode: RunLoopMode.commonModes)
-        timer.fire()
-        return timer
-    }
-    
     @objc func startTime() {
         if time > 0.0 {
             let progress = time/totalTime
-            time = time-1
-            print("\(progress)")
+            print("progress \(progress) time \(time)")
             progressBar.progress = Float(progress)
+            time = time - 1
         }else {
+            progressBar.progress = 0.0
             timer?.invalidate()
         }
     }
@@ -177,7 +167,7 @@ private extension PuzzleViewController {
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
         gradientLayer.endPoint = CGPoint(x: 0.0, y: 1.0)
         gradientLayer.locations = [0,NSNumber(value:0.09),1]
-        gradientLayer.colors = [Pallet.ColorStartGradient.cgColor(),Pallet.ColorCenterGradient.cgColor(),Pallet.ColorStopGradient.cgColor()]
+        gradientLayer.colors = [Pallet.ColorStartGradient.cgColor(),Pallet.ColorStartGradient.cgColor(),Pallet.ColorStopGradient.cgColor()]
         view.layer.insertSublayer(gradientLayer, at: 0)
     }
 }

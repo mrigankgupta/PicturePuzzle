@@ -12,6 +12,8 @@
 		3A40EBA91F3AB5A6004AA91D /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A40EBA81F3AB5A6004AA91D /* SplashViewController.swift */; };
 		3A40EBAB1F3B1D16004AA91D /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A40EBAA1F3B1D16004AA91D /* RootViewController.swift */; };
 		3A747A591F2990BE000B3492 /* VerticalProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A747A581F2990BE000B3492 /* VerticalProgressView.swift */; };
+		3A929A6A1F3DB3F700600B49 /* UIView+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A929A691F3DB3F700600B49 /* UIView+Addition.swift */; };
+		3A929A6D1F3F790400600B49 /* Timer+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A929A6C1F3F790400600B49 /* Timer+Addition.swift */; };
 		3A99FDDA1F1D14B700D1BD08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A99FDD91F1D14B700D1BD08 /* AppDelegate.swift */; };
 		3A99FDDC1F1D14B700D1BD08 /* PuzzleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A99FDDB1F1D14B700D1BD08 /* PuzzleViewController.swift */; };
 		3A99FDDF1F1D14B700D1BD08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A99FDDD1F1D14B700D1BD08 /* Main.storyboard */; };
@@ -52,6 +54,8 @@
 		3A40EBA81F3AB5A6004AA91D /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		3A40EBAA1F3B1D16004AA91D /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		3A747A581F2990BE000B3492 /* VerticalProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalProgressView.swift; sourceTree = "<group>"; };
+		3A929A691F3DB3F700600B49 /* UIView+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Addition.swift"; sourceTree = "<group>"; };
+		3A929A6C1F3F790400600B49 /* Timer+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timer+Addition.swift"; sourceTree = "<group>"; };
 		3A99FDD61F1D14B700D1BD08 /* PicturePuzzle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PicturePuzzle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A99FDD91F1D14B700D1BD08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A99FDDB1F1D14B700D1BD08 /* PuzzleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuzzleViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +130,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		3A929A6B1F3F788600600B49 /* Extention */ = {
+			isa = PBXGroup;
+			children = (
+				3A929A691F3DB3F700600B49 /* UIView+Addition.swift */,
+				3A40EBA41F398B41004AA91D /* UIColor+Addition.swift */,
+				3A40EBA61F39B191004AA91D /* UIImage+Addition.swift */,
+				3A929A6C1F3F790400600B49 /* Timer+Addition.swift */,
+			);
+			path = Extention;
+			sourceTree = "<group>";
+		};
 		3A99FDCD1F1D14B700D1BD08 = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +166,7 @@
 		3A99FDD81F1D14B700D1BD08 /* PicturePuzzle */ = {
 			isa = PBXGroup;
 			children = (
+				3A929A6B1F3F788600600B49 /* Extention */,
 				3A99FDD91F1D14B700D1BD08 /* AppDelegate.swift */,
 				3A40EBA81F3AB5A6004AA91D /* SplashViewController.swift */,
 				3A99FDDB1F1D14B700D1BD08 /* PuzzleViewController.swift */,
@@ -158,8 +174,6 @@
 				3A747A581F2990BE000B3492 /* VerticalProgressView.swift */,
 				3AF782C01F2288F30053EB7E /* Model.swift */,
 				3AF782C21F22AE930053EB7E /* WebService.swift */,
-				3A40EBA41F398B41004AA91D /* UIColor+Addition.swift */,
-				3A40EBA61F39B191004AA91D /* UIImage+Addition.swift */,
 				3A99FDDD1F1D14B700D1BD08 /* Main.storyboard */,
 				3A99FDE01F1D14B700D1BD08 /* Assets.xcassets */,
 				3A99FDE21F1D14B700D1BD08 /* LaunchScreen.storyboard */,
@@ -477,6 +491,8 @@
 				3A99FDDA1F1D14B700D1BD08 /* AppDelegate.swift in Sources */,
 				3A747A591F2990BE000B3492 /* VerticalProgressView.swift in Sources */,
 				3A40EBAB1F3B1D16004AA91D /* RootViewController.swift in Sources */,
+				3A929A6D1F3F790400600B49 /* Timer+Addition.swift in Sources */,
+				3A929A6A1F3DB3F700600B49 /* UIView+Addition.swift in Sources */,
 				3A40EBA71F39B191004AA91D /* UIImage+Addition.swift in Sources */,
 				3A40EBA91F3AB5A6004AA91D /* SplashViewController.swift in Sources */,
 			);
