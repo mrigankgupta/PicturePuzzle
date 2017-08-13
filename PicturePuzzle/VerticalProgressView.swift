@@ -11,7 +11,7 @@ import UIKit
 
 class VerticalProgressView: UIView {
     fileprivate var progressLayer: CAShapeLayer?
-    private var progressLabel = UILabel()
+    private var textLayer: CATextLayer?
     private var innerProgress: Float = 0.5 {
         didSet {
             if let progressLayer = progressLayer {
@@ -20,7 +20,7 @@ class VerticalProgressView: UIView {
         }
     }
     
-    public var insetX: Float = 5.0 {
+    public var insetX: Float = 2.0 {
         didSet {
             if let progressLayer = progressLayer {
                 progressLayer.path = getRectangularBezierPath(forRect: bounds, progress: progress, insetX: insetX, insetY: insetY, cornerRadius: cornerRadius).cgPath
@@ -28,7 +28,7 @@ class VerticalProgressView: UIView {
         }
     }
     
-    public var insetY: Float = 5.0 {
+    public var insetY: Float = 2.0 {
         didSet {
             if let progressLayer = progressLayer {
                 progressLayer.path = getRectangularBezierPath(forRect: bounds, progress: progress, insetX: insetX, insetY: insetY, cornerRadius: cornerRadius).cgPath
@@ -36,7 +36,7 @@ class VerticalProgressView: UIView {
         }
     }
     
-    public var cornerRadius: Float = 10 {
+    public var cornerRadius: Float = 4.0 {
         didSet {
             layer.cornerRadius = CGFloat(cornerRadius)
         }
@@ -83,6 +83,30 @@ class VerticalProgressView: UIView {
         }
     }
     
+    public var percentText = "" {
+        didSet {
+            if let textLayer = textLayer {
+                textLayer.string = percentText
+            }
+        }
+    }
+    
+    public var fontSize:Float = 10.0 {
+        didSet {
+            if let textLayer = textLayer {
+                textLayer.fontSize = CGFloat(fontSize)
+            }
+        }
+    }
+    
+    public var fontColor:CGColor = UIColor.white.cgColor {
+        didSet {
+            if let textLayer = textLayer {
+                textLayer.foregroundColor = fontColor
+            }
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         createTrackBar()
@@ -98,6 +122,10 @@ class VerticalProgressView: UIView {
         if progressLayer == nil {
             progressLayer = createProgressLayer(bounds)
             layer.addSublayer(progressLayer!)
+        }
+        if textLayer == nil && progressLayer != nil {
+            textLayer = createTextLayer(bounds)
+            layer.addSublayer(textLayer!)
         }
     }
     
@@ -120,6 +148,17 @@ class VerticalProgressView: UIView {
         return layer
     }
     
+    private func createTextLayer(_ rect:CGRect) -> CATextLayer {
+        let layer = CATextLayer()
+        let fullRectInset = rect.insetBy(dx: CGFloat(insetX), dy: CGFloat(insetY))
+        let textRect = CGRect(x: fullRectInset.origin.x, y: fullRectInset.origin.y + fullRectInset.size.height - fullRectInset.size.width, width: fullRectInset.size.width, height: fullRectInset.size.width)
+        layer.frame = textRect
+        layer.alignmentMode = kCAAlignmentCenter
+        layer.isWrapped = true
+        layer.fontSize = 10
+        return layer
+    }
+
     private func animateLayer(_ layer:CAShapeLayer, with rect:CGRect) {
         let basicAnimation = CABasicAnimation(keyPath: "path")
         let currentPresentationLayer = layer.presentation()
@@ -136,9 +175,7 @@ class VerticalProgressView: UIView {
     }
     
     private func getRectangularBezierPath(forRect rect:CGRect, progress:Float, insetX:Float, insetY:Float, cornerRadius:Float) -> UIBezierPath {
-        let fullRect = CGRect(x: rect.origin.x, y: rect.origin.y,
-                                  width: rect.size.width, height: rect.size.height)
-        let fullRectInset = fullRect.insetBy(dx: CGFloat(insetX), dy: CGFloat(insetY))
+        let fullRectInset = rect.insetBy(dx: CGFloat(insetX), dy: CGFloat(insetY))
         let progressHeight = fullRectInset.size.height*CGFloat(progress)
         let progressRect = CGRect(x: fullRectInset.origin.x, y: fullRectInset.origin.y + fullRectInset.size.height - progressHeight, width: fullRectInset.size.width, height: progressHeight)
         return UIBezierPath(roundedRect: progressRect, cornerRadius: CGFloat(cornerRadius))

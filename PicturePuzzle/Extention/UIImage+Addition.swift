@@ -13,7 +13,6 @@ extension UIImage {
     func slice(row:Int, col:Int) -> [Slice] {
         var slices = [Slice]()
         let size = CGSize(width: self.size.width*self.scale/CGFloat(col), height: self.size.height*self.scale/CGFloat(row))
-        print("\(String(describing: self.cgImage?.width))")
         for i in 0..<row {
             for j in 0..<col {
                 let rect = CGRect(origin: CGPoint(x:CGFloat(j)*size.width,y:CGFloat(i)*size.height), size: size)
@@ -22,7 +21,6 @@ extension UIImage {
                     let slicedImage = UIImage(cgImage: cgImage, scale: self.scale, orientation: self.imageOrientation)
                     let index = j + i*col
                     let singleSlice = Slice(index: index, image: slicedImage)
-                    print("\(index)")
                     slices.append(singleSlice)
                 }
             }

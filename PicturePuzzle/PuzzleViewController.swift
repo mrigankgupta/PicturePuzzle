@@ -42,7 +42,6 @@ class PuzzleViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.backgroundColor = UIColor.clear
         installLongPressGesture()
-        installProgressBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -53,6 +52,8 @@ class PuzzleViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         installGradientLayer(view: gradientView)
+        let hTrait = self.traitCollection.horizontalSizeClass
+        installProgressBar(size:hTrait)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -139,6 +140,7 @@ private extension PuzzleViewController {
         if time > 0.0 {
             let progress = time/totalTime
             progressBar.progress = Float(progress)
+            progressBar.percentText = "\(Int(time))"
             time = time - 1
         }else {
             progressBar.progress = 0.0
@@ -152,12 +154,20 @@ private extension PuzzleViewController {
         collectionView.addGestureRecognizer(longPressGesture)
     }
     
-    func installProgressBar() {
+    func installProgressBar(size:UIUserInterfaceSizeClass) {
         progressBar.trackImage = UIImage(assetIdentifier: .trackImage)
         progressBar.fillColor = Pallet.ColorProgressBar.color()
         progressBar.cornerRadius = 0.0
-        progressBar.insetX = 7
-        progressBar.insetY = 7
+        switch size {
+        case .unspecified, .compact:
+            progressBar.insetX = 3
+            progressBar.insetY = 3
+            progressBar.fontSize = 15
+        case .regular:
+            progressBar.insetX = 7
+            progressBar.insetY = 7
+            progressBar.fontSize = 30
+        }
     }
     
     func installGradientLayer(view:UIView) {
