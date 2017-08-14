@@ -11,7 +11,7 @@ import UIKit
 
 fileprivate let segueIdStoP = "SplashToPuzzle"
 
-public protocol AdvertGame: class {
+public protocol AdvertGameNotifier: class {
     func didReceivedImage(image:UIImage) -> Bool
     func didFailReceive(msg:String)
 }
@@ -21,7 +21,7 @@ class SplashViewController: UIViewController {
     @IBOutlet weak var bgImage: UIImageView!
     @IBOutlet weak var numLabel: UILabel!
     
-    public weak var delegate:AdvertGame?
+    public weak var delegate:AdvertGameNotifier?
     public weak var rootViewController: UIViewController?
     
     var currentPuzzle = Puzzle(row:3, col:4,
@@ -94,9 +94,10 @@ private extension SplashViewController {
     }
     
     func presetPuzzleController() {
-        let puzzleVC = self.storyboard?.instantiateViewController(withIdentifier: "PuzzleViewController") as! PuzzleViewController
+        let puzzleVC:PuzzleViewController = PuzzleViewController.storyBoardInstance(storyBoard: "AdvertGame")
         puzzleVC.puzzleImage = self.downloadedImage
         puzzleVC.currentPuzzle = self.currentPuzzle
         self.rootViewController?.navigationController?.pushViewController(puzzleVC, animated: false)
     }
 }
+

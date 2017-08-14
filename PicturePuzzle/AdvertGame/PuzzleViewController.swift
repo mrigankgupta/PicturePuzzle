@@ -55,6 +55,7 @@ class PuzzleViewController: UIViewController {
         let hTrait = self.traitCollection.horizontalSizeClass
         installProgressBar(size:hTrait)
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -94,7 +95,6 @@ extension PuzzleViewController: UICollectionViewDataSource {
         let person = sliced.remove(at: sourceIndexPath.item)
         sliced.insert(person, at: destinationIndexPath.item)
         if isOrdered(sliced) {
-            //TODO:Show Alert
             print("success")
         }
     }
@@ -178,5 +178,13 @@ private extension PuzzleViewController {
         gradientLayer.locations = [0,NSNumber(value:0.09),1]
         gradientLayer.colors = [Pallet.ColorStartGradient.cgColor(),Pallet.ColorStartGradient.cgColor(),Pallet.ColorStopGradient.cgColor()]
         view.layer.insertSublayer(gradientLayer, at: 0)
+    }
+}
+
+extension UIViewController {
+    static func storyBoardInstance<T>(storyBoard:String)-> (T) {
+        let storyBoard = UIStoryboard(name: storyBoard, bundle: nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: String(describing:T.self)) as! T
+        return vc
     }
 }

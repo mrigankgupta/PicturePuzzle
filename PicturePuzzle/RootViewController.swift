@@ -12,8 +12,7 @@ import UIKit
 class RootViewController: UIViewController {
     
     lazy var splVC: SplashViewController = {
-        let splashVC = self.storyboard?.instantiateViewController(withIdentifier: "SplashViewController")
-            as! SplashViewController
+        let splashVC:SplashViewController = SplashViewController.storyBoardInstance(storyBoard: "AdvertGame")
         splashVC.delegate = self
         splashVC.rootViewController = self
         return splashVC
@@ -34,7 +33,7 @@ class RootViewController: UIViewController {
     
 }
 
-extension RootViewController :AdvertGame {
+extension RootViewController : AdvertGameNotifier {
     
     func didReceivedImage(image: UIImage) -> Bool {
         return true
