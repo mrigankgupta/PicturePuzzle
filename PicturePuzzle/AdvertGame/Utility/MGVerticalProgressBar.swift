@@ -20,29 +20,31 @@ class MGVerticalProgressBar: UIView {
         }
     }
     
-    public var insetX: Float = 2.0 {
+    @IBInspectable public var insetX: Float = 2.0 {
         didSet {
             if let progressLayer = progressLayer {
-                progressLayer.path = getRectangularBezierPath(forRect: bounds, progress: progress, insetX: insetX, insetY: insetY, cornerRadius: cornerRadius).cgPath
+                progressLayer.path = getRectangularBezierPath(forRect: bounds, progress: progress,
+                                                              insetX: insetX, insetY: insetY, cornerRadius: cornerRadius).cgPath
             }
         }
     }
     
-    public var insetY: Float = 2.0 {
+    @IBInspectable public var insetY: Float = 2.0 {
         didSet {
             if let progressLayer = progressLayer {
-                progressLayer.path = getRectangularBezierPath(forRect: bounds, progress: progress, insetX: insetX, insetY: insetY, cornerRadius: cornerRadius).cgPath
+                progressLayer.path = getRectangularBezierPath(forRect: bounds, progress: progress,
+                                                              insetX: insetX, insetY: insetY, cornerRadius: cornerRadius).cgPath
             }
         }
     }
     
-    public var cornerRadius: Float = 4.0 {
+    @IBInspectable public var cornerRadius: Float = 4.0 {
         didSet {
             layer.cornerRadius = CGFloat(cornerRadius)
         }
     }
     
-    public var progress: Float {
+    @IBInspectable public var progress: Float {
         get {
             return innerProgress
         }
@@ -57,29 +59,45 @@ class MGVerticalProgressBar: UIView {
         }
     }
     
-    public var trackImage: UIImage? {
+    @IBInspectable public var trackImage: UIImage? {
         didSet {
             layer.contents = trackImage?.cgImage
             layer.backgroundColor = UIColor.clear.cgColor
         }
     }
     
-    public var fillImage: UIImage? {
+    @IBInspectable public var fillImage: UIImage? {
         didSet {
             progressLayer?.contents = fillImage?.cgImage
             progressLayer?.fillColor = UIColor.clear.cgColor
         }
     }
     
-    public var trackColor = UIColor.gray {
+    @IBInspectable public var trackColor = UIColor.gray {
         didSet {
             layer.backgroundColor = trackColor.cgColor
         }
     }
     
-    public var fillColor = UIColor.blue {
+    @IBInspectable public var fillColor = UIColor.blue {
         didSet {
             progressLayer?.fillColor = fillColor.cgColor
+        }
+    }
+    
+    @IBInspectable public var fontSize:Float = 10.0 {
+        didSet {
+            if let textLayer = textLayer {
+                textLayer.fontSize = CGFloat(fontSize)
+            }
+        }
+    }
+    
+    @IBInspectable public var fontColor:CGColor = UIColor.white.cgColor {
+        didSet {
+            if let textLayer = textLayer {
+                textLayer.foregroundColor = fontColor
+            }
         }
     }
     
@@ -91,20 +109,9 @@ class MGVerticalProgressBar: UIView {
         }
     }
     
-    public var fontSize:Float = 10.0 {
-        didSet {
-            if let textLayer = textLayer {
-                textLayer.fontSize = CGFloat(fontSize)
-            }
-        }
-    }
-    
-    public var fontColor:CGColor = UIColor.white.cgColor {
-        didSet {
-            if let textLayer = textLayer {
-                textLayer.foregroundColor = fontColor
-            }
-        }
+    public func layerProperties() {
+        layer.cornerRadius = CGFloat(cornerRadius)
+        layer.masksToBounds = true
     }
     
     override init(frame: CGRect) {
@@ -128,42 +135,43 @@ class MGVerticalProgressBar: UIView {
             layer.addSublayer(textLayer!)
         }
     }
+}
+
+private extension MGVerticalProgressBar {
     
-    public func layerProperties() {
-        layer.cornerRadius = CGFloat(cornerRadius)
-        layer.masksToBounds = true
-    }
-    
-    private func createTrackBar() {
+    func createTrackBar() {
         layerProperties()
         layer.backgroundColor = trackColor.cgColor
     }
     
-    private func createProgressLayer(_ rect:CGRect) -> CAShapeLayer {
+    func createProgressLayer(_ rect:CGRect) -> CAShapeLayer {
         let layer = CAShapeLayer()
         layer.frame = rect
-        let bezier = getRectangularBezierPath(forRect: rect, progress: progress, insetX: insetX, insetY: insetY, cornerRadius: cornerRadius)
+        let bezier = getRectangularBezierPath(forRect: rect, progress: progress,
+                                              insetX: insetX, insetY: insetY, cornerRadius: cornerRadius)
         layer.path = bezier.cgPath
         layer.fillColor = fillColor.cgColor
         return layer
     }
     
-    private func createTextLayer(_ rect:CGRect) -> CATextLayer {
+    func createTextLayer(_ rect:CGRect) -> CATextLayer {
         let layer = CATextLayer()
         let fullRectInset = rect.insetBy(dx: CGFloat(insetX), dy: CGFloat(insetY))
-        let textRect = CGRect(x: fullRectInset.origin.x, y: fullRectInset.origin.y + fullRectInset.size.height - fullRectInset.size.width, width: fullRectInset.size.width, height: fullRectInset.size.width)
+        let textRect = CGRect(x: fullRectInset.origin.x, y: fullRectInset.origin.y + fullRectInset.size.height - fullRectInset.size.width,
+                              width: fullRectInset.size.width, height: fullRectInset.size.width)
         layer.frame = textRect
         layer.alignmentMode = kCAAlignmentCenter
         layer.isWrapped = true
         layer.fontSize = 10
         return layer
     }
-
-    private func animateLayer(_ layer:CAShapeLayer, with rect:CGRect) {
+    
+    func animateLayer(_ layer:CAShapeLayer, with rect:CGRect) {
         let basicAnimation = CABasicAnimation(keyPath: "path")
         let currentPresentationLayer = layer.presentation()
         if let oldBezierPath = currentPresentationLayer?.path {
-            let finalBezeirPath = getRectangularBezierPath(forRect: rect, progress: progress, insetX: insetX, insetY: insetY, cornerRadius: cornerRadius)
+            let finalBezeirPath = getRectangularBezierPath(forRect: rect, progress: progress,
+                                                           insetX: insetX, insetY: insetY, cornerRadius: cornerRadius)
             basicAnimation.fromValue = oldBezierPath
             basicAnimation.toValue = finalBezeirPath.cgPath
             basicAnimation.duration = 2.0
@@ -174,10 +182,11 @@ class MGVerticalProgressBar: UIView {
         }
     }
     
-    private func getRectangularBezierPath(forRect rect:CGRect, progress:Float, insetX:Float, insetY:Float, cornerRadius:Float) -> UIBezierPath {
+    func getRectangularBezierPath(forRect rect:CGRect, progress:Float, insetX:Float, insetY:Float, cornerRadius:Float) -> UIBezierPath {
         let fullRectInset = rect.insetBy(dx: CGFloat(insetX), dy: CGFloat(insetY))
         let progressHeight = fullRectInset.size.height*CGFloat(progress)
-        let progressRect = CGRect(x: fullRectInset.origin.x, y: fullRectInset.origin.y + fullRectInset.size.height - progressHeight, width: fullRectInset.size.width, height: progressHeight)
+        let progressRect = CGRect(x: fullRectInset.origin.x, y: fullRectInset.origin.y + fullRectInset.size.height - progressHeight,
+                                  width: fullRectInset.size.width, height: progressHeight)
         return UIBezierPath(roundedRect: progressRect, cornerRadius: CGFloat(cornerRadius))
     }
 }
