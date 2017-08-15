@@ -73,19 +73,19 @@ class MGVerticalProgressBar: UIView {
         }
     }
     
-    @IBInspectable public var trackColor = UIColor.gray {
+    @IBInspectable public var trackColor: UIColor = UIColor.gray {
         didSet {
             layer.backgroundColor = trackColor.cgColor
         }
     }
     
-    @IBInspectable public var fillColor = UIColor.blue {
+    @IBInspectable public var fillColor: UIColor = UIColor.blue {
         didSet {
             progressLayer?.fillColor = fillColor.cgColor
         }
     }
     
-    @IBInspectable public var fontSize:Float = 10.0 {
+    @IBInspectable public var fontSize: Float = 10.0 {
         didSet {
             if let textLayer = textLayer {
                 textLayer.fontSize = CGFloat(fontSize)
@@ -93,10 +93,10 @@ class MGVerticalProgressBar: UIView {
         }
     }
     
-    @IBInspectable public var fontColor:CGColor = UIColor.white.cgColor {
+    @IBInspectable public var fontColor: UIColor = UIColor.white {
         didSet {
             if let textLayer = textLayer {
-                textLayer.foregroundColor = fontColor
+                textLayer.foregroundColor = fontColor.cgColor
             }
         }
     }
