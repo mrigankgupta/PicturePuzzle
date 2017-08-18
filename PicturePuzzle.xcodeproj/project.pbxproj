@@ -22,6 +22,7 @@
 		3A99FDE41F1D14B700D1BD08 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A99FDE21F1D14B700D1BD08 /* LaunchScreen.storyboard */; };
 		3A99FDEF1F1D14B700D1BD08 /* PicturePuzzleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A99FDEE1F1D14B700D1BD08 /* PicturePuzzleTests.swift */; };
 		3A99FDFA1F1D14B800D1BD08 /* PicturePuzzleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A99FDF91F1D14B800D1BD08 /* PicturePuzzleUITests.swift */; };
+		3AC52D421F46F02300CD1DE1 /* Array+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC52D411F46F02300CD1DE1 /* Array+Addition.swift */; };
 		3AF782C11F2288F30053EB7E /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF782C01F2288F30053EB7E /* Model.swift */; };
 		3AF782C31F22AE930053EB7E /* WebService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF782C21F22AE930053EB7E /* WebService.swift */; };
 /* End PBXBuildFile section */
@@ -65,6 +66,7 @@
 		3A99FDF51F1D14B700D1BD08 /* PicturePuzzleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PicturePuzzleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A99FDF91F1D14B800D1BD08 /* PicturePuzzleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PicturePuzzleUITests.swift; sourceTree = "<group>"; };
 		3A99FDFB1F1D14B800D1BD08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3AC52D411F46F02300CD1DE1 /* Array+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Addition.swift"; sourceTree = "<group>"; };
 		3AF782C01F2288F30053EB7E /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		3AF782C21F22AE930053EB7E /* WebService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -101,6 +103,7 @@
 				3A40EBA41F398B41004AA91D /* UIColor+Addition.swift */,
 				3A40EBA61F39B191004AA91D /* UIImage+Addition.swift */,
 				3A929A6C1F3F790400600B49 /* Timer+Addition.swift */,
+				3AC52D411F46F02300CD1DE1 /* Array+Addition.swift */,
 			);
 			path = Additions;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3AF782C11F2288F30053EB7E /* Model.swift in Sources */,
+				3AC52D421F46F02300CD1DE1 /* Array+Addition.swift in Sources */,
 				3A40EBA51F398B41004AA91D /* UIColor+Addition.swift in Sources */,
 				3A99FDDC1F1D14B700D1BD08 /* PuzzleViewController.swift in Sources */,
 				3AF782C31F22AE930053EB7E /* WebService.swift in Sources */,
