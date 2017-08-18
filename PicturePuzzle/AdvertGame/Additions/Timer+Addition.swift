@@ -17,3 +17,11 @@ extension Timer {
         self.fire()
     }
 }
+
+extension Array {
+    mutating func swapAt(_ i:Int, _ j:Int) {
+            let temp = self[i]
+            self[i] = self[j]
+            self[j] = temp
+    }
+}

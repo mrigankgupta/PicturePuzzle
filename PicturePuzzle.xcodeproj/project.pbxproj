@@ -94,7 +94,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3A929A6B1F3F788600600B49 /* Extention */ = {
+		3A929A6B1F3F788600600B49 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
 				3A929A691F3DB3F700600B49 /* UIView+Addition.swift */,
@@ -102,7 +102,7 @@
 				3A40EBA61F39B191004AA91D /* UIImage+Addition.swift */,
 				3A929A6C1F3F790400600B49 /* Timer+Addition.swift */,
 			);
-			path = Extention;
+			path = Additions;
 			sourceTree = "<group>";
 		};
 		3A973A3A1F41BC4000D87014 /* AdvertGame */ = {
@@ -111,7 +111,7 @@
 				3A973A3D1F41E38000D87014 /* Service */,
 				3A973A3C1F41E35E00D87014 /* Model */,
 				3A973A3B1F41E34000D87014 /* Utility */,
-				3A929A6B1F3F788600600B49 /* Extention */,
+				3A929A6B1F3F788600600B49 /* Additions */,
 				3A40EBA81F3AB5A6004AA91D /* SplashViewController.swift */,
 				3A99FDDB1F1D14B700D1BD08 /* PuzzleViewController.swift */,
 				3A973A381F41B84400D87014 /* AdvertGame.storyboard */,
@@ -510,6 +510,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = QR9565V3SM;
 				INFOPLIST_FILE = PicturePuzzle/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cogicx.PicturePuzzle;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -524,6 +525,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = QR9565V3SM;
 				INFOPLIST_FILE = PicturePuzzle/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cogicx.PicturePuzzle;
 				PRODUCT_NAME = "$(TARGET_NAME)";

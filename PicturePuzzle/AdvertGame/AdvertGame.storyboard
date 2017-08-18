@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13156.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13156.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
+        <deployment version="4112" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13137.5"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -43,7 +42,6 @@
                             <constraint firstAttribute="trailing" secondItem="VbN-rp-5TW" secondAttribute="trailing" id="r6J-I7-y3a"/>
                             <constraint firstItem="VbN-rp-5TW" firstAttribute="top" secondItem="D6b-Oy-MTX" secondAttribute="bottom" id="xSI-Wi-8c1"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="2NP-cG-Wzt"/>
                     </view>
                     <connections>
                         <outlet property="bgImage" destination="VbN-rp-5TW" id="duj-tu-EIp"/>
@@ -145,7 +143,6 @@
                             </constraint>
                             <constraint firstItem="Asq-Ye-MNh" firstAttribute="width" secondItem="hfc-Tn-PjT" secondAttribute="width" multiplier="1:20" id="z1L-OJ-DLu"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="7P7-rD-Mej"/>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="hfc-Tn-PjT" id="VIt-Bh-LZC"/>

@@ -155,7 +155,7 @@ class VerticalProgressView: UIView {
         layer.frame = textRect
         layer.alignmentMode = kCAAlignmentCenter
         layer.isWrapped = true
-        layer.fontSize = 10
+        layer.fontSize = CGFloat(fontSize)
         return layer
     }
 
