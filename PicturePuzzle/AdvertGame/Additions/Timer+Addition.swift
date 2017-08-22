@@ -14,6 +14,5 @@ extension Timer {
         let now = Date.init()
         self.init(fireAt: now.addingTimeInterval(initialDelay), interval: timeInterval, target: target, selector: aSelector, userInfo:nil, repeats: true)
         RunLoop.main.add(self, forMode: RunLoopMode.commonModes)
-        self.fire()
     }
 }

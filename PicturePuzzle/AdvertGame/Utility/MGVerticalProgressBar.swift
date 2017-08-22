@@ -11,9 +11,9 @@ import UIKit
 
 class MGVerticalProgressBar: UIView {
     fileprivate var progressLayer: CAShapeLayer?
-    private var textLayer: CATextLayer?
-    private var innerImageLayer: CAShapeLayer?
-    private var innerProgress: Float = 0.5 {
+    fileprivate var textLayer: CATextLayer?
+    fileprivate var innerImageLayer: CAShapeLayer?
+    fileprivate var innerProgress: Float = 0.5 {
         didSet {
             if let progressLayer = progressLayer {
                 animateLayer(progressLayer, rect: bounds, progress: progress,
@@ -72,7 +72,8 @@ class MGVerticalProgressBar: UIView {
         didSet {
             innerImageLayer?.contents = fillImage?.cgImage
             progressLayer?.fillColor = UIColor.white.cgColor
-            innerImageLayer!.mask = progressLayer
+            innerImageLayer?.mask = progressLayer
+            innerImageLayer?.contentsScale = fillImage!.scale
         }
     }
     
@@ -143,7 +144,7 @@ class MGVerticalProgressBar: UIView {
     }
 }
 
-private extension MGVerticalProgressBar {
+fileprivate extension MGVerticalProgressBar {
     
     func adjustTextLayer(frame:CGRect) {
         textLayer?.frame = getBottomSquareFrame(frame: bounds, insetX: insetX, insetY: insetY)
@@ -170,11 +171,13 @@ private extension MGVerticalProgressBar {
         if innerImageLayer == nil {
             innerImageLayer = createInnerLayer(frame: bounds, progress: progress,
                                                insetX: insetX, insetY: insetY, cornerRadius: cornerRadius, fillColor: UIColor.clear)
+            innerImageLayer!.contentsScale = UIScreen.main.scale
             layer.addSublayer(innerImageLayer!)
         }
         if progressLayer == nil {
             progressLayer = createInnerLayer(frame: bounds, progress: progress,
                                              insetX: insetX, insetY: insetY, cornerRadius: cornerRadius, fillColor: fillColor)
+            progressLayer!.contentsScale = UIScreen.main.scale
             layer.addSublayer(progressLayer!)
         }
     }
@@ -182,6 +185,7 @@ private extension MGVerticalProgressBar {
     func configureTextLayer() {
         if textLayer == nil {
             textLayer = createTextLayer(frame: bounds, insetX: insetX, insetY: insetY)
+            textLayer!.contentsScale = UIScreen.main.scale
             layer.addSublayer(textLayer!)
         }
     }

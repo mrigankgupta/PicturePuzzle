@@ -11,7 +11,7 @@
 		3A40EBA71F39B191004AA91D /* UIImage+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A40EBA61F39B191004AA91D /* UIImage+Addition.swift */; };
 		3A40EBA91F3AB5A6004AA91D /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A40EBA81F3AB5A6004AA91D /* SplashViewController.swift */; };
 		3A40EBAB1F3B1D16004AA91D /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A40EBAA1F3B1D16004AA91D /* RootViewController.swift */; };
-		3A747A591F2990BE000B3492 /* VerticalProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A747A581F2990BE000B3492 /* VerticalProgressView.swift */; };
+		3A5838481F4B4B1700993388 /* MGVerticalProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4C91161F4B439900E19369 /* MGVerticalProgressBar.swift */; };
 		3A929A6A1F3DB3F700600B49 /* UIView+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A929A691F3DB3F700600B49 /* UIView+Addition.swift */; };
 		3A929A6D1F3F790400600B49 /* Timer+Addition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A929A6C1F3F790400600B49 /* Timer+Addition.swift */; };
 		3A973A391F41B84400D87014 /* AdvertGame.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A973A381F41B84400D87014 /* AdvertGame.storyboard */; };
@@ -49,7 +49,7 @@
 		3A40EBA61F39B191004AA91D /* UIImage+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Addition.swift"; sourceTree = "<group>"; };
 		3A40EBA81F3AB5A6004AA91D /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		3A40EBAA1F3B1D16004AA91D /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
-		3A747A581F2990BE000B3492 /* VerticalProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalProgressView.swift; sourceTree = "<group>"; };
+		3A4C91161F4B439900E19369 /* MGVerticalProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MGVerticalProgressBar.swift; sourceTree = "<group>"; };
 		3A929A691F3DB3F700600B49 /* UIView+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Addition.swift"; sourceTree = "<group>"; };
 		3A929A6C1F3F790400600B49 /* Timer+Addition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timer+Addition.swift"; sourceTree = "<group>"; };
 		3A973A381F41B84400D87014 /* AdvertGame.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AdvertGame.storyboard; sourceTree = "<group>"; };
@@ -125,7 +125,7 @@
 		3A973A3B1F41E34000D87014 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				3A747A581F2990BE000B3492 /* VerticalProgressView.swift */,
+				3A4C91161F4B439900E19369 /* MGVerticalProgressBar.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -336,13 +336,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A5838481F4B4B1700993388 /* MGVerticalProgressBar.swift in Sources */,
 				3AF782C11F2288F30053EB7E /* Model.swift in Sources */,
 				3AC52D421F46F02300CD1DE1 /* Array+Addition.swift in Sources */,
 				3A40EBA51F398B41004AA91D /* UIColor+Addition.swift in Sources */,
 				3A99FDDC1F1D14B700D1BD08 /* PuzzleViewController.swift in Sources */,
 				3AF782C31F22AE930053EB7E /* WebService.swift in Sources */,
 				3A99FDDA1F1D14B700D1BD08 /* AppDelegate.swift in Sources */,
-				3A747A591F2990BE000B3492 /* VerticalProgressView.swift in Sources */,
 				3A40EBAB1F3B1D16004AA91D /* RootViewController.swift in Sources */,
 				3A929A6D1F3F790400600B49 /* Timer+Addition.swift in Sources */,
 				3A929A6A1F3DB3F700600B49 /* UIView+Addition.swift in Sources */,

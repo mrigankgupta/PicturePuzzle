@@ -11,8 +11,8 @@ class PuzzleViewController: UIViewController {
     
     @IBOutlet weak var layout: UICollectionViewFlowLayout!
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var progressBar: VerticalProgressView!
     @IBOutlet weak var gradientView: UIView!
+    @IBOutlet weak var progressBar: MGVerticalProgressBar!
     
     fileprivate let gapBtwSlice:CGFloat = 1.0
     
